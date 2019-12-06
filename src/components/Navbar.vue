@@ -20,12 +20,13 @@
             <router-link to="/home" class="nav-link">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/products" class="nav-link">Products</router-link>
+            <router-link to="/admin/product" class="nav-link">Products</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/about" class="nav-link">About</router-link>
+            <router-link to="/admin/about" class="nav-link">About</router-link>
           </li>
         </ul>
+
         <form class="form-inline my-2 my-lg-0">
           <input
             class="form-control mr-sm-2"
@@ -38,18 +39,22 @@
             data-toggle="modal"
             data-target="#login"
           >Get Started</a>
+          <a class="btn ml-1" data-toggle="modal" data-target="#MiniCart">
+            <i class="fas fa-cart-plus"></i>
+          </a>
         </form>
+        <!-- <button class="btn btn-info ml-1" data-toggle="modal" data-target="#MiniCart">Cart</button> -->
       </div>
     </nav>
   </div>
 </template>
 
 <script>
-// import Login from "../components/Login";
+import Login from "../components/Login";
 export default {
   name: "Navbar",
-  props: {}
-  // components: { Login }
+  props: {},
+  components: { Login }
 };
 </script>
 

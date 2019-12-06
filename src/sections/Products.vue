@@ -1,7 +1,7 @@
 <template>
   <div class="product" id="product">
     <div class="container">
-      <h1 class="text-center p-5">Our Products</h1>
+      <h3 class="text-center p-5">Our Products</h3>
       <div class="row">
         <div class="col-md-4">
           <div class="card product-item">
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { fb, db } from "../firebase";
 export default {
   name: "Product",
   props: {}

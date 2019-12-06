@@ -49,8 +49,8 @@
                 aria-labelledby="pills-login-tab"
               >
                 <h5 class="text-left">Login Please</h5>
-                <div class="form-group">
-                  <label for="exampleInputEmail1" class="text-left">Email address</label>
+                <div class="form-group text-left">
+                  <label for="exampleInputEmail1" class>Email address</label>
                   <input
                     type="email"
                     v-model="email"
@@ -58,15 +58,17 @@
                     id="exampleInputEmail1"
                     placeholder="Enter email"
                   />
-                  <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  <small
+                    class="form-text text-muted text-left"
+                  >We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1" class="text-left">Password</label>
+                  <label for="exampleInputPassword1">Password</label>
                   <input
                     @keyup.enter="login"
                     type="password"
                     v-model="password"
-                    class="form-control"
+                    class="form-control col-md-12"
                     id="exampleInputPassword1"
                     placeholder="Password"
                   />
@@ -130,7 +132,7 @@
 </template>
 
 <script>
-import { fb } from "../firebase";
+import { fb, db } from "../firebase";
 export default {
   name: "Login",
   data() {
@@ -164,6 +166,18 @@ export default {
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(user => {
           $("#login").modal("hide");
+          db.collection("profiles")
+            .doc(user.user.uid)
+            .set({
+              name: this.name
+            })
+            .then(function() {
+              console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+              console.error("Error writing document: ", error);
+            });
+
           this.$router.replace("admin");
         })
         .catch(function(error) {
@@ -187,6 +201,6 @@ export default {
   border-radius: 0;
 }
 .form-group {
-  padding-left: 0;
+  text-align: left;
 }
 </style>

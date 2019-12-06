@@ -1,14 +1,14 @@
 <template>
-  <div class="navbar"></div>
+  <q-page class="flex flex-center">
+    <img alt="Quasar logo" src="../assets/logo.png">
+  </q-page>
 </template>
+
+<style>
+</style>
 
 <script>
 export default {
-  name: "Navbar",
-  props: {}
-};
+  name: 'HelloWorld'
+}
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-</style>

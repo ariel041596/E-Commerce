@@ -1,37 +1,59 @@
 <template>
   <div class="product">
     <div class="container">
-      <h3 class="text-center">Our Products</h3>
+      <h3 class="text-center">Orders</h3>
       <div class="row">
-        <div class="col-md-4 col-lg-3" v-for="product in products">
+        <div class="col-md-4">
           <div class="card product-item">
-            <Carousel
-              class="slider"
-              :paginationSize="8"
-              :paginationPadding="5"
-              :perPage="1"
-              :autoplay="true"
-            >
-              <Slide class="slider" v-for="(image, index) in product.images">
-                <img :src="image" class="card-img-top" alt="..." />
-              </Slide>
-            </Carousel>
+            <img
+              src="/img/products/product1.jpg"
+              class="card-img-top"
+              alt="..."
+            />
             <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h5 class="card-title">{{ product.product_name }}</h5>
-                <h5 class="card-price">
-                  {{
-                    product.price | currency("₱", 2, { decimalSeparator: "." })
-                  }}
-                </h5>
-              </div>
-              <!-- Props are those binded variable that send to Add to Cart Component -->
-              <AddToCart
-                :product-image="getImage(product.images)"
-                :product-id="product.id"
-                :product-name="product.product_name"
-                :price="product.price"
-              ></AddToCart>
+              <h5 class="card-title">Surface Book 2</h5>
+              <p class="card-text">
+                Complete your device with Office 365 and get 1TB cloud storage,
+                Excel, Word, PowerPoint & more. Select your suite during
+                checkout.
+              </p>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card product-item">
+            <img
+              src="/img/products/product2.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Surface Laptop 2</h5>
+              <p class="card-text">
+                Style and speed. Go beyond the traditional with new Surface
+                Laptop 2. Featuring improved performance and the full Windows 10
+                Home experience.
+              </p>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card product-item">
+            <img
+              src="/img/products/product3.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Surface Studio 2</h5>
+              <p class="card-text">
+                The ultimate creative studio. Let your ideas flow with brilliant
+                color, blazing graphics, faster processors, intuitive tools, and
+                a stunning, adjustable 28” display.
+              </p>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
             </div>
           </div>
         </div>
@@ -55,11 +77,7 @@
             <tbody>
               <tr v-for="product in products">
                 <td>{{ product.product_name }}</td>
-                <td class="text-right">
-                  {{
-                    product.price | currency("₱", 2, { decimalSeparator: "." })
-                  }}
-                </td>
+                <td>{{ product.price }}</td>
                 <td>
                   <button class="btn btn-primary" @click="editProduct(product)">
                     Edit
@@ -200,17 +218,14 @@
         </div>
       </div>
     </div>
-    <MiniCart></MiniCart>
   </div>
 </template>
 
 <script>
 import { fb, db } from "../firebase";
 import { VueEditor } from "vue2-editor";
-import { Carousel, Slide } from "vue-carousel";
-
 export default {
-  name: "Product",
+  name: "Order",
   firestore() {
     return {
       products: db.collection("products")
@@ -231,11 +246,8 @@ export default {
       modal: null
     };
   },
-  components: { VueEditor, Carousel, Slide },
+  components: { VueEditor },
   methods: {
-    getImage(images) {
-      return images[0];
-    },
     reset() {
       this.product = {
         product_name: null,
@@ -343,6 +355,8 @@ export default {
   created() {}
 };
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .img-wrapp {
   position: relative;
@@ -362,21 +376,9 @@ export default {
 .card-title,
 .card-text {
   text-align: justify;
-  font-size: 20px;
 }
 
 .card-body {
   text-align: left;
-}
-
-.product-item {
-  height: 350px;
-}
-.card-img-top {
-  height: 200px;
-  width: 100%;
-}
-.card-price {
-  font-size: 15px;
 }
 </style>

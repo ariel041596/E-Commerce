@@ -1,4 +1,10 @@
-import firebase from "firebase";
+// import firebase from "firebase";
+// require("firebase/firestore");
+
+import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/firebase-auth";
+import "firebase/storage";
 
 var firebaseConfig = {
   apiKey: "AIzaSyAo_9h6blXvLw9A8_CMFkPP8kPxXYos9T0",
@@ -12,6 +18,8 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 
-export const fb = firebase.initializeApp(firebaseConfig);
+const fb = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
+export { fb, db };
 //   firebase.analytics();

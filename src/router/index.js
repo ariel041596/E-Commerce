@@ -5,6 +5,9 @@ import Admin from "../admin/Admin.vue";
 import Products from "../sections/Products.vue";
 import Overview from "../admin/Overview.vue";
 import Product from "../admin/Products.vue";
+import Profile from "../admin/Profile.vue";
+import Order from "../admin/Orders.vue";
+import Checkout from "../views/Checkout.vue";
 import { fb } from "../firebase";
 
 Vue.use(VueRouter);
@@ -30,8 +33,23 @@ const routes = [
         path: "product",
         name: "product",
         component: Product
+      },
+      {
+        path: "order",
+        name: "order",
+        component: Order
+      },
+      {
+        path: "profile",
+        name: "profile",
+        component: Profile
       }
     ]
+  },
+  {
+    path: "/checkout",
+    name: "checkout",
+    component: Checkout
   },
   {
     path: "/products",

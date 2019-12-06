@@ -18,13 +18,13 @@
           <div class="sidebar-item sidebar-header">
             <div class="user-pic">
               <img class="img-responsive img-rounded" src="/img/user.png" alt="User picture" />
+              <!-- </div> -->
             </div>
             <div class="user-info">
               <span class="user-name">
-                Jhon
-                <strong>Smith</strong>
+                <strong>{{profile.name}}</strong>
               </span>
-              <span class="user-role"></span>
+              <span class="user-role">{{email}}</span>
               <span class="user-status">
                 <i class="fa fa-circle"></i>
                 <span>Online</span>
@@ -64,7 +64,7 @@
                 </router-link>
               </li>
               <li>
-                <router-link to="/admin/orders">
+                <router-link to="/admin/order">
                   <i class="fa fa-shopping-cart"></i>
                   <span>Orders</span>
                 </router-link>
@@ -98,10 +98,29 @@
 </template>
 
 <script>
-import { fb } from "../firebase";
+import { fb, db } from "../firebase";
 export default {
   name: "Admin",
+  firestore() {
+    const user = fb.auth().currentUser;
+    return {
+      profile: db.collection("profiles").doc(user.uid)
+    };
+  },
   components: {},
+  data() {
+    return {
+      profile: {
+        name: null,
+        phone: null,
+        address: null,
+        postcode: null
+      },
+      name: null,
+      email: null,
+      role: null
+    };
+  },
   methods: {
     logout() {
       fb.auth()
@@ -137,6 +156,10 @@ export default {
           .addClass("active");
       }
     }
+  },
+  created() {
+    var user = fb.auth().currentUser;
+    this.email = user.email;
   }
 };
 </script>
@@ -145,5 +168,10 @@ export default {
 #show-sidebar {
   margin-right: 100%;
   margin-top: 5px;
+}
+.user-info {
+  margin-top: -50px;
+  text-align: left;
+  margin-left: 70px;
 }
 </style>

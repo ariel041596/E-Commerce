@@ -1,3 +1,14 @@
 module.exports = {
-  runtimeCompiler: true
+  runtimeCompiler: true,
+
+  pluginOptions: {
+    quasar: {
+      rtlSupport: true,
+      treeShake: true
+    }
+  },
+
+  transpileDependencies: [
+    /[\\\/]node_modules[\\\/]quasar[\\\/]/
+  ]
 };
