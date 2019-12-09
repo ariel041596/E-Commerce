@@ -20,7 +20,7 @@
             <ul>
               <li v-for="item in this.$store.state.cart" class="media">
                 <img :src="item.product_Image" alt width="80px" class="align-self-center" />
-                <div class="media-body col-md-6">
+                <div class="media-body col-md-6 col-lg-8">
                   <div>
                     <h6 class="mt-0">{{ item.product_Name }}</h6>
                     <span>

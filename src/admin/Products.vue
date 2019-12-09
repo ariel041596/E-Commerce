@@ -3,7 +3,7 @@
     <div class="container">
       <h3 class="text-center">Our Products</h3>
       <div class="row">
-        <div class="col-md-4 col-lg-3" v-for="product in products">
+        <div class="col-md-4" v-for="product in products">
           <div class="card product-item">
             <Carousel
               class="slider"
@@ -13,15 +13,15 @@
               :autoplay="true"
             >
               <Slide class="slider" v-for="(image, index) in product.images">
-                <img :src="image" class="card-img-top" alt="..." />
+                <img :src="image" width="250px" alt="..." />
               </Slide>
             </Carousel>
-            <div class="card-body">
+            <div class="card-body col-md-12">
               <div class="d-flex justify-content-between">
                 <h5 class="card-title">{{ product.product_name }}</h5>
                 <h5 class="card-price">
                   {{
-                    product.price | currency("₱", 2, { decimalSeparator: "." })
+                  product.price | currency("₱", 2, { decimalSeparator: "." })
                   }}
                 </h5>
               </div>
@@ -40,9 +40,7 @@
       <div class="product-test">
         <hr />
         <h3 class="d-inline-block">Product List</h3>
-        <button @click="addNew()" class="btn btn-primary float-right">
-          Add Product
-        </button>
+        <button @click="addNew()" class="btn btn-primary float-right">Add Product</button>
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -57,19 +55,12 @@
                 <td>{{ product.product_name }}</td>
                 <td class="text-right">
                   {{
-                    product.price | currency("₱", 2, { decimalSeparator: "." })
+                  product.price | currency("₱", 2, { decimalSeparator: "." })
                   }}
                 </td>
                 <td>
-                  <button class="btn btn-primary" @click="editProduct(product)">
-                    Edit
-                  </button>
-                  <button
-                    class="btn btn-danger"
-                    @click="deleteProduct(product)"
-                  >
-                    Delete
-                  </button>
+                  <button class="btn btn-primary" @click="editProduct(product)">Edit</button>
+                  <button class="btn btn-danger" @click="deleteProduct(product)">Delete</button>
                 </td>
               </tr>
             </tbody>
@@ -88,18 +79,9 @@
       <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="editLabel" v-if="modal == 'edit'">
-              Edit Product
-            </h5>
-            <h5 class="modal-title" id="editLabel" v-if="modal == 'new'">
-              Add Product
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
+            <h5 class="modal-title" id="editLabel" v-if="modal == 'edit'">Edit Product</h5>
+            <h5 class="modal-title" id="editLabel" v-if="modal == 'new'">Add Product</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -151,21 +133,13 @@
 
                 <div class="form-group text-left">
                   <label for="product_image">Product Images</label>
-                  <input
-                    type="file"
-                    @change="uploadImage"
-                    class="form-control"
-                  />
+                  <input type="file" @change="uploadImage" class="form-control" />
                 </div>
                 <div class="form-group d-flex">
                   <div class="p-1" v-for="(image, index) in product.images">
                     <div class="img-wrapp">
                       <img :src="image" alt width="80px" />
-                      <span
-                        class="delete-img"
-                        @click="deleteImage(image, index)"
-                        >X</span
-                      >
+                      <span class="delete-img" @click="deleteImage(image, index)">X</span>
                     </div>
                   </div>
                 </div>
@@ -173,29 +147,19 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button
               type="button"
               class="btn btn-primary"
               @click="addProduct()"
               v-if="modal == 'new'"
-            >
-              Save changes
-            </button>
+            >Save changes</button>
             <button
               @click="updateProduct()"
               type="button"
               class="btn btn-primary"
               v-if="modal == 'edit'"
-            >
-              Apply changes
-            </button>
+            >Apply changes</button>
           </div>
         </div>
       </div>
@@ -369,13 +333,6 @@ export default {
   text-align: left;
 }
 
-.product-item {
-  height: 350px;
-}
-.card-img-top {
-  height: 200px;
-  width: 100%;
-}
 .card-price {
   font-size: 15px;
 }

@@ -5,15 +5,10 @@
     <div class="container mt-4">
       <div class="row">
         <div class="col-md-8">
-          <h4 class="py-4 text-left">Check-out Items</h4>
+          <h5 class="py-4 text-left">Check-out Items</h5>
           <ul>
             <li v-for="item in this.$store.state.cart" class="media">
-              <img
-                :src="item.product_Image"
-                alt
-                width="120px"
-                class="align-self-center"
-              />
+              <img :src="item.product_Image" alt width="120px" class="align-self-center" />
               <div class="media-body col-md-6">
                 <div>
                   <h6 class="mt-0">{{ item.product_Name }}</h6>
@@ -26,8 +21,8 @@
                 </div>
                 <p class="mt-0">
                   {{
-                    item.product_Price
-                      | currency("₱", 2, { decimalSeparator: "." })
+                  item.product_Price
+                  | currency("₱", 2, { decimalSeparator: "." })
                   }}
                 </p>
                 <p class="mt-0">Quantity: {{ item.product_Quantity }}</p>
@@ -49,9 +44,7 @@
             class="pay-with-stripe btn btn-primary mt-4"
             @click="pay"
             :disabled="!complete"
-          >
-            Pay with credit card
-          </button>
+          >Pay with credit card</button>
         </div>
       </div>
     </div>

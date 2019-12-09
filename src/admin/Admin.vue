@@ -1,10 +1,6 @@
 <template>
   <div class="admin">
     <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
-      <button id="show-sidebar" @click="closeMenu" class="btn-sm btn-dark">
-        <i class="fas fa-bars"></i>
-      </button>
-
       <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-content">
           <!-- sidebar-brand  -->
@@ -87,8 +83,12 @@
           <!-- sidebar-menu  -->
         </div>
       </nav>
+
       <!-- sidebar-content  -->
       <main class="page-content">
+        <button id="show-sidebar" @click="closeMenu" class="btn-sm btn-dark">
+          <i class="fas fa-bars"></i>
+        </button>
         <router-view />
       </main>
       <!-- page-content" -->
